@@ -1,0 +1,3 @@
+Hello World!!
+This is a cp command simulation
+written by Nikti
