@@ -26,7 +26,7 @@ else if (prs == 0){
 }
 else if (prs > 0){
     printf("\nParent Process: Adding two numbers: ");
-    result = a - b;
+    result = a + b;
     printf("\nAddition of %d and %d is %d",a,b,result);
 }
 
