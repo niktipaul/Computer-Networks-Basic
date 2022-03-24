@@ -19,15 +19,17 @@ prs = fork();
 
 if (prs == -1)
     printf("Process Failed");
-else if (prs == 0){
-    printf("\nChild Process: Subtracting two numbers: ");
-    result = a - b;
-    printf("\nSubtraction of %d and %d is %d",a,b,result);
-}
+
 else if (prs > 0){
     printf("\nParent Process: Adding two numbers: ");
     result = a + b;
     printf("\nAddition of %d and %d is %d",a,b,result);
 }
+else if (prs == 0){
+    printf("\nChild Process: Subtracting two numbers: ");
+    result = a - b;
+    printf("\nSubtraction of %d and %d is %d",a,b,result);
+}
+
 
 }
