@@ -7,6 +7,9 @@
 #include<arpa/inet.h>
 #include<sys/socket.h>
 #include<sys/types.h>
+#include<string.h>
+#include<stdlib.h>
+
 int main()
 {
 	struct sockaddr_in s_addr,c_addr;    
@@ -18,6 +21,7 @@ int main()
 	if((s_fd=socket(AF_INET,SOCK_STREAM,0))==-1)				
 		printf("[-]Error in Socket\n");
 	printf("[+]Server Socket created\n");
+	
 
 	s_addr.sin_family = AF_INET;                                  
 	s_addr.sin_port = 3452;                                       
@@ -32,21 +36,32 @@ int main()
 	printf("[+]Listening... \n");
 
 
-    c_len=sizeof(c_addr);                                 	
+
+	int nums[2], n = 0;
+
+	c_len=sizeof(c_addr);                                 	
 	if((c_fd=accept(s_fd,(struct sockaddr*)&c_addr,&c_len))==-1)	
 		printf("\n[-]Error in accepting\n");
 	printf("[+]New Client Connected!!!: \n\n");
 
-    char buff[100];
-	while(1)
-	{
-        printf("Enter Your Message Mr.Server: ");
-        fgets(buff,sizeof(buff),stdin);
-		write(c_fd,buff,100);    
-        read(c_fd,buff,100);									  
-        printf("From Client: %s\n",buff);           
+
+	while(n < 2)
+	{   
+		
+    	char buff[100];
+        read(c_fd,buff,100);	
+
+        printf("From Client Number %d is %s",n+1,buff);
+		nums[n++] = atoi(buff); 
 
 	}
-    close(c_fd);
+
+	printf("\nAddition of %d and %d is %d\n",nums[0],nums[1],nums[0]+nums[1]);
+	printf("Subtaction of %d and %d is %d\n",nums[0],nums[1],nums[0]-nums[1]);
+	printf("Multiplication of %d and %d is %d\n",nums[0],nums[1],nums[0]*nums[1]);
+
+	close(c_fd);
 	return 0;
 }
+
+
