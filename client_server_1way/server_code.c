@@ -7,6 +7,8 @@
 #include<arpa/inet.h>
 #include<sys/socket.h>
 #include<sys/types.h>
+#include<string.h>
+
 int main()
 {
 	struct sockaddr_in s_addr,c_addr;    
@@ -39,7 +41,10 @@ int main()
 	{   
         read(c_fd,buff,100);									  
         printf("From Client: %s\n",buff);           
-
+		if (strcmp(buff, "Disconnected\n") == 0){
+                printf("Client Disconnected");
+                break;
+            }
 	}
     close(c_fd);
 	return 0;
