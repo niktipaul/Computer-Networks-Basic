@@ -34,7 +34,7 @@ int main()
             fgets(buff,sizeof(buff),stdin);
               
             if (strcmp(buff, "Exit\n") == 0){
-                printf("Disconneted from Server");
+                printf("[-]Disconneted from Server");
                 write(c_fd,"Disconnected\n",100);
                 break;
             }

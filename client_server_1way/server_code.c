@@ -18,23 +18,26 @@ int main()
 
 
 	if((s_fd=socket(AF_INET,SOCK_STREAM,0))==-1)				
-		printf("Error..Socket\n");
+		printf("[-]Error in Socket\n");
+	printf("[+]Server Socket created\n");
 
 	s_addr.sin_family = AF_INET;                                  
 	s_addr.sin_port = 3452;                                       
 	s_len=sizeof(s_addr); 
 
 	if(bind(s_fd,(struct sockaddr*)& s_addr,s_len)==-1)		   
-		printf("Error bind\n");
+		printf("[-]Error in bind\n");
+	printf("[+]Binding Successfull\n");
 
 	if(listen(s_fd,5)==-1)                                     
-		printf("Error listen\n");
+		printf("Error in listening\n");
+	printf("[+]Listening...\n");
 
 
     c_len=sizeof(c_addr);                                 	
 	if((c_fd=accept(s_fd,(struct sockaddr*)&c_addr,&c_len))==-1)	
-		printf("Error accept\n");
-	printf("New Client Connected: \n");
+		printf("[-]Error in accept\n");
+	printf("[+]New Client Connected!!! \n\n");
 
     char buff[100];
 	while(1)
@@ -42,7 +45,7 @@ int main()
         read(c_fd,buff,100);									  
         printf("From Client: %s\n",buff);           
 		if (strcmp(buff, "Disconnected\n") == 0){
-                printf("Client Disconnected");
+                printf("[-]Client Disconnected");
                 break;
             }
 	}
